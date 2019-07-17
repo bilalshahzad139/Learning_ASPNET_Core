@@ -19,9 +19,12 @@ namespace ASPNETCore_Demos.Controllers
     public class UserController : Controller
     {
         private readonly IEmailSender _emailSender;
-        public UserController(IEmailSender emailSender)
+        private readonly SessionManager _sessionManager;
+
+        public UserController(IEmailSender emailSender, SessionManager sessionManager)
         {
             _emailSender = emailSender;
+            _sessionManager = sessionManager;
         }
 
         [HttpGet]
@@ -61,6 +64,10 @@ namespace ASPNETCore_Demos.Controllers
             if (UserManager.ValidateUser(dto.Login,dto.Password) == true)
             {
                 this.HttpContext.Session.SetInt32("loginid",1);
+
+                _sessionManager.ID = 1;
+                _sessionManager.LoginName = dto.Login;
+
                 return Redirect("~/");
                 //ViewBag.Msg = "Valid User!";
             }

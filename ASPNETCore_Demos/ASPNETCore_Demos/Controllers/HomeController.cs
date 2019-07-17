@@ -14,20 +14,16 @@ namespace ASPNETCore_Demos.Controllers
     public class HomeController : Controller
     {
         private readonly IServiceProvider _serviceProvider;
-
-        public HomeController(IServiceProvider serviceProvider)
+        private readonly SessionManager _sessionManager;
+        public HomeController(IServiceProvider serviceProvider, SessionManager sessionManager)
         {
             _serviceProvider = serviceProvider;
+            _sessionManager = sessionManager;
         }
 
         public IActionResult Index([FromServices] IEmailSender emailSender)
         {
-            //emailSender.Send();
-
-            //var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
-            //var t3 = _serviceProvider.GetService<TestManager>();
-            //var t4 = _serviceProvider.GetRequiredService<TestManager>();
-
+            /*
             var id = this.HttpContext.Session.GetInt32("loginid");
             if(id != null && id > 0)
             {
@@ -39,7 +35,19 @@ namespace ASPNETCore_Demos.Controllers
             {
                 return Redirect("~/User/Login");
             }
-            
+            */
+
+            //Using SessionManager
+            if(_sessionManager.IsLoggedIn == true)
+            {
+                ViewBag.Login = _sessionManager.LoginName;
+                return View();
+            }
+            else
+            {
+                return Redirect("~/User/Login");
+            }
+
         }
 
         public IActionResult Privacy()

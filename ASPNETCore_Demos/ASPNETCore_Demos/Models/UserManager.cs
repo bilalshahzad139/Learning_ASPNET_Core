@@ -14,6 +14,9 @@ namespace ASPNETCore_Demos.Models
         {
             if (login == "admin" && password == "admin")
                 return true;
+            else if (login == "admin2" && password == "admin2")
+                return true;
+
             else return false;
         }
 

@@ -37,18 +37,17 @@ namespace ASPNETCore_Demos
 
             //For Session
             services.AddDistributedMemoryCache();//To Store session in Memory. It isn't an actual distributed cache.
-            services.AddSession();
-
-            /*
+            //services.AddSession();
+            
             services.AddSession(options =>
             {
                 // Set a short timeout for easy testing.
-                options.IdleTimeout = TimeSpan.FromSeconds(10); //Session Timeout (It only clears content, not session)
+                options.IdleTimeout = TimeSpan.FromSeconds(100); //Session Timeout (It only clears content, not session)
                 options.Cookie.HttpOnly = true;
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
             });
-            */
+            
 
             //Essential Cookie is a cookie which is required to run the site properly.
 
@@ -66,6 +65,9 @@ namespace ASPNETCore_Demos
             //services.AddSingleton<TestManager>(); //Create a single instance for life cycle of application
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddScoped<SessionManager>();    
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
