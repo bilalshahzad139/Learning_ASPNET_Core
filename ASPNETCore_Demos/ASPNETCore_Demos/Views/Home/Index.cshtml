@@ -1,6 +1,11 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<h3>ID is: @httpContextAccessor.HttpContext.Session.GetInt32("loginid")</h3>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

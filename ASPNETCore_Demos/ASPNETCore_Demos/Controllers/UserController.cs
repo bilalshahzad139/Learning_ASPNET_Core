@@ -29,12 +29,11 @@ namespace ASPNETCore_Demos.Controllers
         {
             _emailSender.Send();
 
+            //var t1 = (TestManager)this.HttpContext.RequestServices.GetService(typeof(TestManager));
+            //t1.value = 10;
 
-            var t1 = (TestManager)this.HttpContext.RequestServices.GetService(typeof(TestManager));
-            t1.value = 10;
-
-            var t2 = this.HttpContext.RequestServices.GetService<TestManager>();
-            var v = t2.value;
+            //var t2 = this.HttpContext.RequestServices.GetService<TestManager>();
+            //var v = t2.value;
 
             return View(new LoginDTO());
         }
@@ -61,7 +60,9 @@ namespace ASPNETCore_Demos.Controllers
             
             if (UserManager.ValidateUser(dto.Login,dto.Password) == true)
             {
-                ViewBag.Msg = "Valid User!";
+                this.HttpContext.Session.SetInt32("loginid",1);
+                return Redirect("~/");
+                //ViewBag.Msg = "Valid User!";
             }
             else
             {

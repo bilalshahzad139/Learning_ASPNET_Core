@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ASPNETCore_Demos.Models;
 using ASPNETCore_Demos.Utility;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 
 namespace ASPNETCore_Demos.Controllers
 {
@@ -21,13 +22,24 @@ namespace ASPNETCore_Demos.Controllers
 
         public IActionResult Index([FromServices] IEmailSender emailSender)
         {
-            emailSender.Send();
+            //emailSender.Send();
 
-            var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
-            var t3 = _serviceProvider.GetService<TestManager>();
-            var t4 = _serviceProvider.GetRequiredService<TestManager>();
+            //var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
+            //var t3 = _serviceProvider.GetService<TestManager>();
+            //var t4 = _serviceProvider.GetRequiredService<TestManager>();
 
-            return View();
+            var id = this.HttpContext.Session.GetInt32("loginid");
+            if(id != null && id > 0)
+            {
+                var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
+                var i = t2.GetID();
+                return View();
+            }
+            else
+            {
+                return Redirect("~/User/Login");
+            }
+            
         }
 
         public IActionResult Privacy()

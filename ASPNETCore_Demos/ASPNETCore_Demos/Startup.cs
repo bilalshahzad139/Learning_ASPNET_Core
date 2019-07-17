@@ -31,6 +31,27 @@ namespace ASPNETCore_Demos
                                     .AddConsole()
             );
 
+            //To use Session in Non-Controller places
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+
+            //For Session
+            services.AddDistributedMemoryCache();//To Store session in Memory. It isn't an actual distributed cache.
+            services.AddSession();
+
+            /*
+            services.AddSession(options =>
+            {
+                // Set a short timeout for easy testing.
+                options.IdleTimeout = TimeSpan.FromSeconds(10); //Session Timeout (It only clears content, not session)
+                options.Cookie.HttpOnly = true;
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+            */
+
+            //Essential Cookie is a cookie which is required to run the site properly.
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -64,6 +85,8 @@ namespace ASPNETCore_Demos
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {
