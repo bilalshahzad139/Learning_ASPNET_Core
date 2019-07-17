@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace ASPNETCore_Demos.Models
 {
-    public static class UserManager
+    public class UserManager
     {
+
         public static Boolean ValidateUser(String login, String password)
         {
             if (login == "admin" && password == "admin")

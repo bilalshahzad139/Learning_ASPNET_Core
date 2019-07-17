@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNETCore_Demos.Models;
+using ASPNETCore_Demos.Utility;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -10,18 +11,30 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Microsoft.Extensions.DependencyInjection;
 
 
 namespace ASPNETCore_Demos.Controllers
 {
     public class UserController : Controller
     {
-        public UserController()
+        private readonly IEmailSender _emailSender;
+        public UserController(IEmailSender emailSender)
         {
+            _emailSender = emailSender;
         }
+
         [HttpGet]
         public IActionResult Login()
         {
+            _emailSender.Send();
+
+
+            var t1 = (TestManager)this.HttpContext.RequestServices.GetService(typeof(TestManager));
+            t1.value = 10;
+
+            var t2 = this.HttpContext.RequestServices.GetService<TestManager>();
+            var v = t2.value;
 
             return View(new LoginDTO());
         }
@@ -45,7 +58,7 @@ namespace ASPNETCore_Demos.Controllers
         [ActionName("Login")]
         public IActionResult Login4(LoginDTO dto)
         {
-
+            
             if (UserManager.ValidateUser(dto.Login,dto.Password) == true)
             {
                 ViewBag.Msg = "Valid User!";

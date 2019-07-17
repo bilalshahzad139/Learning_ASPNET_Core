@@ -5,13 +5,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNETCore_Demos.Models;
+using ASPNETCore_Demos.Utility;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ASPNETCore_Demos.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly IServiceProvider _serviceProvider;
+
+        public HomeController(IServiceProvider serviceProvider)
         {
+            _serviceProvider = serviceProvider;
+        }
+
+        public IActionResult Index([FromServices] IEmailSender emailSender)
+        {
+            emailSender.Send();
+
+            var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
+            var t3 = _serviceProvider.GetService<TestManager>();
+            var t4 = _serviceProvider.GetRequiredService<TestManager>();
+
             return View();
         }
 
