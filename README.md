@@ -10,3 +10,4 @@ In this we saw different use cases of DI
 - Case 4: DI in View
 - Case 5: Creating instance of a DI-enabled class directly in Controller class
 - Case 6: Creating instance of a DI-enabled class directly in any class through injecting IServicesProvider
+- Discussion on AddTransient/AddScoped/AddSingleton functions
