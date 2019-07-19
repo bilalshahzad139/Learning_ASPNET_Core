@@ -16,4 +16,10 @@
     <Folder Include="Views\User\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\BALHelper\BALHelper.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
 </Project>

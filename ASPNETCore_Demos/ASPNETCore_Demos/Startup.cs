@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASPNETCore_Demos.Models;
+using BALHelper;
+using Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,6 +12,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace ASPNETCore_Demos
 {
@@ -31,13 +35,25 @@ namespace ASPNETCore_Demos
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //services.Configure<MyCustomSettings>(Configuration);
+            services.Configure<MyCustomSettings>(Configuration.GetSection("MyAppSettings"));
+
+            services.AddTransient<MyCustomBAL>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILogger<Startup> logger)
         {
+
+            var v = Configuration["AppSetting"];
+            logger.LogInformation(v);
+            
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -60,5 +76,7 @@ namespace ASPNETCore_Demos
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+        
     }
 }

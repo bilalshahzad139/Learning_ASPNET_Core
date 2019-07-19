@@ -1,6 +1,16 @@
-﻿@{
+﻿@using Microsoft.Extensions.Configuration;
+@using Microsoft.Extensions.Options;
+@using Common;
+
+@inject IConfiguration configuration;
+@inject IOptions<MyCustomSettings> settings;
+@{
     ViewData["Title"] = "Home Page";
 }
+
+AppSetting using configuration Object:<b> @configuration["AppSetting"]</b>
+<br />
+AppSetting using configuration Object:<b> @settings.Value.AppName</b>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNETCore_Demos.Models;
+using BALHelper;
+using Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,29 +18,20 @@ namespace ASPNETCore_Demos.Controllers
 {
     public class UserController : Controller
     {
-        public UserController()
+        public UserController(IOptions<MyCustomSettings> appSettings)
         {
+            var id = appSettings.Value.AppID;
+            var appName = appSettings.Value.AppName;
+            var isallowed = appSettings.Value.IsAllowed;
         }
         [HttpGet]
         public IActionResult Login()
         {
+            var a = this.HttpContext.RequestServices.GetService<MyCustomBAL>();
+            //var v = a.GetConfigValue();
+            var v = a.GetConfigValue2();
 
             return View(new LoginDTO());
-        }
-        
-        [HttpPost]
-        public IActionResult Login2()
-        {
-            string log = Request.Form["login"];
-            string password = Request.Form["password"];
-
-            return View("Login");
-        }
-
-        [HttpPost]
-        public IActionResult Login3(string login,string password)
-        {
-            return View("Login");
         }
 
         [HttpPost]

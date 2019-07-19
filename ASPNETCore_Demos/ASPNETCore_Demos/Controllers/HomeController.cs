@@ -5,12 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ASPNETCore_Demos.Models;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace ASPNETCore_Demos.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public HomeController(IConfiguration configuration)
+        {
+            var v = configuration["AppSetting"];
+
+        }
+        public IActionResult Index( )
         {
             return View();
         }
