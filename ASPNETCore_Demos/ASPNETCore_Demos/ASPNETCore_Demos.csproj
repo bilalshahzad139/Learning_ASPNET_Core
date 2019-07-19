@@ -16,4 +16,9 @@
     <Folder Include="Views\User\" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\HelperLib\HelperLib.csproj" />
+  </ItemGroup>
+
 </Project>

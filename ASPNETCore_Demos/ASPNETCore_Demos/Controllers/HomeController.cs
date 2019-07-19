@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using ASPNETCore_Demos.Models;
 using ASPNETCore_Demos.Utility;
 using Microsoft.Extensions.DependencyInjection;
+using HelperLib;
 
 namespace ASPNETCore_Demos.Controllers
 {
@@ -26,6 +27,8 @@ namespace ASPNETCore_Demos.Controllers
             var t2 = (TestManager)_serviceProvider.GetService(typeof(TestManager));
             var t3 = _serviceProvider.GetService<TestManager>();
             var t4 = _serviceProvider.GetRequiredService<TestManager>();
+
+            var t5 = _serviceProvider.GetRequiredService<MyBAL>();
 
             return View();
         }

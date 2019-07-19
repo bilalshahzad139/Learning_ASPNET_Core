@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASPNETCore_Demos.Utility;
+using HelperLib;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,6 +44,8 @@ namespace ASPNETCore_Demos
             services.AddTransient<TestManager>(); //Create a new instance whenever DI needs to provide an instance
             //services.AddScoped<TestManager>(); //Create a new instance for every Request from Client (Browser)
             //services.AddSingleton<TestManager>(); //Create a single instance for life cycle of application
+
+            services.AddTransient<MyBAL>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
