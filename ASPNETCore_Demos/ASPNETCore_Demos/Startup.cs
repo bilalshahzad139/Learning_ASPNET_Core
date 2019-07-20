@@ -58,7 +58,6 @@ namespace ASPNETCore_Demos
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddScoped<IEmailSender, EmailSender>();
 
             services.AddTransient<TestManager>(); //Create a new instance whenever DI needs to provide an instance
             //services.AddScoped<TestManager>(); //Create a new instance for every Request from Client (Browser)

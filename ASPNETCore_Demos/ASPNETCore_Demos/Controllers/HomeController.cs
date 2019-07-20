@@ -21,7 +21,7 @@ namespace ASPNETCore_Demos.Controllers
             _sessionManager = sessionManager;
         }
 
-        public IActionResult Index([FromServices] IEmailSender emailSender)
+        public IActionResult Index()
         {
             /*
             var id = this.HttpContext.Session.GetInt32("loginid");

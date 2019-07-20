@@ -10,17 +10,15 @@ namespace ASPNETCore_Demos.Utility
     {
         public int value = 0;
         private readonly ISession _session;
-        private readonly IEmailSender _emailSender;
 
-        public TestManager(IEmailSender emailSender, IHttpContextAccessor httpContextAccessor)
+        public TestManager(IHttpContextAccessor httpContextAccessor)
         {
             _session = httpContextAccessor.HttpContext.Session;
-            _emailSender = emailSender;
         }
 
         public void TestMethod()
         {
-            _emailSender.Send();
+            
         }
 
         public int GetID()

@@ -18,26 +18,16 @@ namespace ASPNETCore_Demos.Controllers
 {
     public class UserController : Controller
     {
-        private readonly IEmailSender _emailSender;
         private readonly SessionManager _sessionManager;
 
-        public UserController(IEmailSender emailSender, SessionManager sessionManager)
+        public UserController(SessionManager sessionManager)
         {
-            _emailSender = emailSender;
             _sessionManager = sessionManager;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
-            _emailSender.Send();
-
-            //var t1 = (TestManager)this.HttpContext.RequestServices.GetService(typeof(TestManager));
-            //t1.value = 10;
-
-            //var t2 = this.HttpContext.RequestServices.GetService<TestManager>();
-            //var v = t2.value;
-
             return View(new LoginDTO());
         }
         
