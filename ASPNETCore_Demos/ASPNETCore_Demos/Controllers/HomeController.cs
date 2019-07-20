@@ -45,6 +45,7 @@ namespace ASPNETCore_Demos.Controllers
             }
             else
             {
+                TempData["ErrMsg"] = "Invalid Access!";
                 return Redirect("~/User/Login");
             }
 

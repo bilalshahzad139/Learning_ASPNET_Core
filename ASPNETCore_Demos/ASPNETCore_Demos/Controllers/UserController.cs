@@ -53,7 +53,7 @@ namespace ASPNETCore_Demos.Controllers
             
             if (UserManager.ValidateUser(dto.Login,dto.Password) == true)
             {
-                this.HttpContext.Session.SetInt32("loginid",1);
+                //this.HttpContext.Session.SetInt32("loginid",1);
 
                 _sessionManager.ID = 1;
                 _sessionManager.LoginName = dto.Login;
@@ -63,6 +63,7 @@ namespace ASPNETCore_Demos.Controllers
             }
             else
             {
+                
                 ViewBag.Msg = "Invalid User!";
             }
             return View("Login",dto);
