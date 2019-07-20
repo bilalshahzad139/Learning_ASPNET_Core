@@ -19,6 +19,14 @@ namespace ASPNETCore_Demos
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.SetBasePath(Directory.GetCurrentDirectory());
+                    config.AddJsonFile(
+                        "abc.json", optional: false, reloadOnChange: true);
+                })
                 .UseStartup<Startup>();
+
+        //For Loading Custome files, check this https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-2.2#configureappconfiguration
     }
 }

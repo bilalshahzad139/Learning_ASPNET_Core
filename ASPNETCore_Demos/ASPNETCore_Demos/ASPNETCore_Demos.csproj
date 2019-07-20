@@ -22,4 +22,11 @@
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Content Update="abc.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

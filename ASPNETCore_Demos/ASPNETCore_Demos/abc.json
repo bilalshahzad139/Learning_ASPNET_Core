@@ -1,0 +1,10 @@
+{
+  "AppSetting": "abc123434 abc eddJsonFile",
+  "AppSetting1": "abcJsonFile",
+  "MyAppSettings": {
+    "AppID": 3,
+    "AppName": "DemoApp333",
+    "IsAllowed": true,
+    "Urls": [ "abc1", "ded2" ]
+  }
+}

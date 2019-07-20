@@ -15,7 +15,7 @@ namespace ASPNETCore_Demos.Controllers
         public HomeController(IConfiguration configuration)
         {
             var v = configuration["AppSetting"];
-
+            var v1 = configuration["AppSetting1"];
         }
         public IActionResult Index( )
         {
