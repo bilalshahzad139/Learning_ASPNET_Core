@@ -13,7 +13,7 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute"
               crossorigin="anonymous"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"/>
+              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" />
     </environment>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
@@ -45,7 +45,8 @@
             @RenderBody()
         </main>
     </div>
-
+    <button id="btnGetToken">Get Token</button>
+    <button id="btnGetName">Get Name</button>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2019 - ASPNETCore_Demos - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -71,7 +72,50 @@
         </script>
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $(function () {
 
+            $("#btnGetToken").click(function () {
+                var settings = {
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    type: "GET",
+                    url: "https://localhost:44334/api/main/gettoken",
+                    data: "{}",
+                    success: function (r) {
+                        sessionStorage.setItem('token', r.data);
+                        alert(r.data);
+                    },
+                    error: function (r) {
+                        alert('error');
+                    }
+                };
+
+                $.ajax(settings);
+            });
+
+            $("#btnGetName").click(function () {
+                var settings = {
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    type: "POST",
+                    url: "https://localhost:44334/api/main/getname4",
+                    data: "{}",
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+                    },
+                    success: function (r) {
+                        alert(r.data);
+                    },
+                    error: function (r) {
+                        alert('error');
+                    }
+                };
+
+                $.ajax(settings);
+            });
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

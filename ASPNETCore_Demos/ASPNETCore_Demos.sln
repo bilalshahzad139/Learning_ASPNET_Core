@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCore_Demos", "ASPNETCore_Demos\ASPNETCore_Demos.csproj", "{3245FFBF-3D68-4016-B836-0FAFCEF22E2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCore_Demos", "ASPNETCore_Demos\ASPNETCore_Demos.csproj", "{3245FFBF-3D68-4016-B836-0FAFCEF22E2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPiTest", "WebAPiTest\WebAPiTest.csproj", "{FADF0255-1D28-4777-9CAC-351250F12CE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3245FFBF-3D68-4016-B836-0FAFCEF22E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3245FFBF-3D68-4016-B836-0FAFCEF22E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3245FFBF-3D68-4016-B836-0FAFCEF22E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FADF0255-1D28-4777-9CAC-351250F12CE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FADF0255-1D28-4777-9CAC-351250F12CE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FADF0255-1D28-4777-9CAC-351250F12CE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FADF0255-1D28-4777-9CAC-351250F12CE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
